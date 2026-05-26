@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S3 Image Uploader</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#7c3aed">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div id="licenseScreen" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Activate Application</h2>
+        <p>Please enter your license key to unlock all features.</p>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="licenseInput" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+        <div id="licenseError" class="error-msg" style="display: none;"></div>
+        <button id="activateBtn" disabled>Activate Product</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="web-layout">
+
+    <header class="top-navbar">
+      <div class="logo-area">
+        <span class="logo-text">S3</span> <span class="logo-sub">uploader</span>
+      </div>
+
+      <div class="nav-controls">
+        <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌓</button>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <canvas id="heroCanvas"></canvas>
+
+      <div class="hero-container">
+
+        <div id="image" class="tinify-drop-zone">
+          <button id="clearAllImagesBtn" class="clear-all-grid-btn" title="Clear all selection">&times; Clear All</button>
+
+          <div class="drop-zone-content">
+            <div class="box-icon">
+              <img src="https://red-hollow-elephant-379.mypinata.cloud/ipfs/bafkreibvfqqcb2yrcl3pexh6myyayptpl2pjzcntydsnxebmli5agrswsu" width="191" height="104" alt="Plugin box in upload container" class="pluginbox">
+            </div>
+            <h1 class="drop-title">Drop your images here!</h1>
+          </div>
+        </div>
+        <input type="file" id="filePicker" multiple accept="image/*" style="display: none;">
+
+        <div id="localPath" class="path-info"></div>
+
+        <div class="control-form-bar">
+          <div class="input-field">
+            <label>Folder Name:</label>
+            <div class="input-with-clear">
+              <input type="text" id="folderNameInput" name="s3_folder_private_input" placeholder="e.g., ABCD123" autocomplete="off" spellcheck="false">
+              <button id="clearFolderInput" class="clear-input-btn" style="display: none;">&times;</button>
+            </div>
+          </div>
+
+          <div class="input-field">
+            <label>Select Category:</label>
+            <input type="hidden" id="categorySelect" value="finance">
+
+            <div class="custom-dropdown" id="customDropdown">
+              <div class="dropdown-trigger" id="dropdownTrigger">
+                <span class="dropdown-trigger-icon">💰</span>
+                <span class="dropdown-trigger-text">Finance</span>
+                <span class="dropdown-arrow">▼</span>
+              </div>
+              <div class="dropdown-menu" id="dropdownMenu">
+                <div class="dropdown-item active" data-value="finance" data-icon="💰">💰 Finance</div>
+                <div class="dropdown-item" data-value="health" data-icon="🏥">🏥 Health</div>
+                <div class="dropdown-item" data-value="pets" data-icon="🐾">🐾 Pets</div>
+                <div class="dropdown-item" data-value="organic" data-icon="🌿">🌿 Organic</div>
+                <div class="dropdown-item" data-value="alpha" data-icon="⚡">⚡ Alpha</div>
+              </div>
+            </div>
+          </div>
+
+          <button id="upload" class="main-upload-btn" disabled>UPLOAD FILES</button>
+        </div>
+
+      </div>
+    </section>
+
+    <main class="history-section">
+      <div class="history-container">
+        <div id="historyHeader" class="history-header" style="display: none;">
+          <h3>Upload History</h3>
+          <button id="clearHistory" class="clear-history-btn">Clear All</button>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <p>History is empty. Uploaded images will appear here.</p>
+        </div>
+
+        <div id="history" class="history-list"></div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+  <script src="canvas-bg.js"></script>
+</body>
+
+</html>
