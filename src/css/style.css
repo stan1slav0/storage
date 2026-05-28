@@ -212,6 +212,7 @@ canvas {
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
+  pointer-events: none;
 }
 
 .drop-zone-content {
